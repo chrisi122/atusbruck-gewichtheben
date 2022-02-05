@@ -136,7 +136,7 @@ axios
     "http://localhost:1337/api/athletes?pagination[pageSize]=300&populate=personalInformation.name"
   )
   .then((res) => {
-    console.log(res.data.data);
+    // console.log(res.data.data);
     res.data.data.forEach((el) => {
       const fullName = `${el.attributes.personalInformation.name.lastname}${
         el.attributes.personalInformation.name.firstname
@@ -150,10 +150,52 @@ axios
         .replaceAll("ä", "ae")
         .replaceAll("ü", "ue")
         .replaceAll("ß", "ss");
-      console.log(slug, el.attributes.slug);
+      // console.log(slug, el.attributes.slug);
 
       // axios.put("http://localhost:1337/api/athletes/" + el.id, {
       //   data: { slug },
       // });
     });
   });
+
+const updateResults = (page, pageSize = 25) => {
+  axios
+    .get(
+      `http://localhost:1337/api/results/?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate[0]=score.disciplines.attempts`
+    )
+    .then((res) => {
+      console.log(res.data.data);
+      res.data.data.forEach((entry) => {
+        const result = entry.attributes.score;
+        delete result.id;
+        result.disciplines.forEach((el) => {
+          delete el.id;
+          if (!el.attempts || el.attempts.length === 0) delete el.attempts;
+          else el.attempts.forEach((attempt) => delete attempt.id);
+        });
+        console.log(entry.id, result);
+        axios
+          .put("http://localhost:1337/api/results/" + entry.id, {
+            data: { result },
+          })
+          .catch((err) => console.log(err));
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// for (let index = 1; index < 160; index++) {
+//   updateResults(index);
+// }
+
+const getResults = (page = 1) => {
+  axios
+    .get(
+      "http://localhost:1337/api/results?pagination[pageSize]=4000&pagination[page]=" +
+        page
+    )
+    .then((res) => {
+      console.log(res.data.data);
+      res.data.data.forEach((el) => console.log(el.attributes.result));
+    });
+};

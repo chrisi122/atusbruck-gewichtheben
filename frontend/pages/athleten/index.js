@@ -23,8 +23,8 @@ const index = ({ athletes }) => {
   return (
     <div className={classes.outerContainer}>
       <Typography
-        variant='h1'
-        align='center'
+        variant="h1"
+        align="center"
         classes={{ root: classes.heading }}
       >
         Athleten
@@ -32,7 +32,7 @@ const index = ({ athletes }) => {
       <Grid
         container
         classes={{ root: classes.container }}
-        justifyContent='center'
+        justifyContent="center"
         spacing={3}
       >
         {athletes &&
@@ -54,7 +54,7 @@ export const getServerSideProps = async (context) => {
   try {
     const res = await axios.get(
       process.env.NEXT_PUBLIC_STRAPI_URL +
-        "/api/athletes?filters[isActive]=true&populate[0]=personalInformation.name&populate[1]=results.score.disciplines"
+        "/api/athletes?filters[isActive]=true&populate[0]=personalInformation.name&populate[1]=results"
     );
 
     data = res.data;

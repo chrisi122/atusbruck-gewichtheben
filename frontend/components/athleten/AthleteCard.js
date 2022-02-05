@@ -26,13 +26,13 @@ const AthleteCard = ({ athlete }) => {
   athlete.attributes.results.data
     .sort((a, b) => new Date(a.attributes.date) - new Date(b.attributes.date))
     .forEach((result) => {
-      const sn = result.attributes.score.disciplines.find(
+      const sn = result.attributes.result.disciplines.find(
         (el) => el.type === "SNATCH"
       );
-      const cj = result.attributes.score.disciplines.find(
+      const cj = result.attributes.result.disciplines.find(
         (el) => el.type === "CLEAN_AND_JERK"
       );
-      const total = result.attributes.score.disciplines.find(
+      const total = result.attributes.result.disciplines.find(
         (el) => el.type === "TOTAL"
       );
 
@@ -45,47 +45,47 @@ const AthleteCard = ({ athlete }) => {
   return (
     <Card>
       <CardMedia
-        component='img'
-        image='/images/athleten/kathrein-christian.jpg'
+        component="img"
+        image="/images/athleten/kathrein-christian.jpg"
         height={300}
       />
       <CardContent>
-        <Grid container direction='column' alignItems='flex-start' spacing={1}>
+        <Grid container direction="column" alignItems="flex-start" spacing={1}>
           <Grid item>
-            <Typography variant='h3'>
+            <Typography variant="h3">
               {athlete.attributes.personalInformation.name.lastname}{" "}
               {athlete.attributes.personalInformation.name.firstname}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography variant="body1">
               <FaBirthdayCake />{" "}
-              <Moment format='DD.MM.YYYY'>
+              <Moment format="DD.MM.YYYY">
                 {athlete.attributes.personalInformation.dateOfBirth}
               </Moment>
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography variant="body1">
               <BsCalendar2Check />{" "}
-              <Moment format='DD.MM.YYYY'>
+              <Moment format="DD.MM.YYYY">
                 {athlete.attributes.clubEntryDate}
               </Moment>
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography variant="body1">
               <IoScaleOutline /> {athlete.attributes.weightclass}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography variant="body1">
               <GoLocation />{" "}
               {athlete.attributes.personalInformation.placeOfBirth}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography variant="body1">
               <IoBarbellSharp /> {personalBests.snatch} kg /{" "}
               {personalBests.cleanAndJerk} kg / {personalBests.total} kg /
               335.56 SP
@@ -94,7 +94,7 @@ const AthleteCard = ({ athlete }) => {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='primary' fullWidth>
+        <Button variant="contained" color="primary" fullWidth>
           zum Athleten
         </Button>
       </CardActions>
