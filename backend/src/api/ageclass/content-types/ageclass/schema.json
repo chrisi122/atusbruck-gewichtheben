@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ageclasses",
+  "info": {
+    "singularName": "ageclass",
+    "pluralName": "ageclasses",
+    "displayName": "Ageclass",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "upperBound": {
+      "type": "integer",
+      "required": false,
+      "max": 999,
+      "default": 999
+    },
+    "lowerBound": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

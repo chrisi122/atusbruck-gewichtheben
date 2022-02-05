@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_result_attempts",
+  "info": {
+    "displayName": "Attempt",
+    "icon": "angle-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "weight": {
+      "type": "decimal",
+      "required": false,
+      "default": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "GOOD_LIFT",
+        "NO_LIFT",
+        "DECLARED",
+        "WITHDRAWN"
+      ],
+      "required": false,
+      "default": "DECLARED"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menu": {
+      "displayName": "Menu",
+      "type": "component",
+      "repeatable": true,
+      "component": "header.menu"
+    },
+    "socials": {
+      "displayName": "Socials",
+      "type": "component",
+      "repeatable": true,
+      "component": "header.socials"
+    }
+  }
+}

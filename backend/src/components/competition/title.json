@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_competition_titles",
+  "info": {
+    "displayName": "Title",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "default": {
+      "type": "string",
+      "required": true
+    },
+    "short": {
+      "type": "string"
+    }
+  }
+}

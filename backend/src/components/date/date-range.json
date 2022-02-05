@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_date_date_ranges",
+  "info": {
+    "displayName": "DateRange",
+    "icon": "calendar-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "startTime": {
+      "type": "time"
+    },
+    "endTime": {
+      "type": "time"
+    }
+  }
+}

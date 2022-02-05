@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_landing_page_contacts",
+  "info": {
+    "displayName": "contact",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    }
+  }
+}

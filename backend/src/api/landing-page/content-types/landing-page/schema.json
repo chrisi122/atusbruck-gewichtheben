@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "landing_pages",
+  "info": {
+    "singularName": "landing-page",
+    "pluralName": "landing-pages",
+    "displayName": "LandingPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "trainingTime": {
+      "displayName": "TrainingTime",
+      "type": "component",
+      "repeatable": true,
+      "component": "landing-page.training-time"
+    },
+    "contactInfos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::official.official"
+    }
+  }
+}

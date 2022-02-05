@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_result_scores",
+  "info": {
+    "displayName": "Score",
+    "icon": "equals"
+  },
+  "options": {},
+  "attributes": {
+    "disciplines": {
+      "displayName": "Discipline",
+      "type": "component",
+      "repeatable": true,
+      "component": "result.discipline"
+    }
+  }
+}

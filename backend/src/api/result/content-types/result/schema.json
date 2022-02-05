@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "results",
+  "info": {
+    "singularName": "result",
+    "pluralName": "results",
+    "displayName": "Result",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "competitions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::competition.competition",
+      "inversedBy": "results"
+    },
+    "score": {
+      "type": "component",
+      "repeatable": false,
+      "component": "result.score"
+    },
+    "athlete": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::athlete.athlete",
+      "inversedBy": "results"
+    },
+    "bodyweight": {
+      "type": "decimal",
+      "default": 0
+    },
+    "date": {
+      "type": "date"
+    },
+    "outOfCompetition": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

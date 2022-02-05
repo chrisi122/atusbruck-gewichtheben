@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_header_socials",
+  "info": {
+    "displayName": "Socials",
+    "icon": "arrow-alt-circle-right"
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

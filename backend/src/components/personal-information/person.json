@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_personal_information_people",
+  "info": {
+    "displayName": "Person",
+    "icon": "address-book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "displayName": "Name",
+      "type": "component",
+      "repeatable": false,
+      "component": "personal-information.name",
+      "required": true
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "placeOfBirth": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "M",
+        "F"
+      ],
+      "default": "M",
+      "required": true
+    }
+  }
+}

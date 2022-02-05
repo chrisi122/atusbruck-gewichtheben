@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_team_competition_leagues",
+  "info": {
+    "displayName": "League",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "short": {
+      "type": "string"
+    }
+  }
+}

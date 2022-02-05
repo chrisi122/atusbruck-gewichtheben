@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weightclasses",
+  "info": {
+    "singularName": "weightclass",
+    "pluralName": "weightclasses",
+    "displayName": "Weightclass",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "upperBound": {
+      "type": "decimal",
+      "default": 999,
+      "max": 999
+    },
+    "lowerBound": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    }
+  }
+}

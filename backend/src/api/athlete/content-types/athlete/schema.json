@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "athletes",
+  "info": {
+    "singularName": "athlete",
+    "pluralName": "athletes",
+    "displayName": "Athlete",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "results": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::result.result",
+      "mappedBy": "athlete"
+    },
+    "personalInformation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "personal-information.person",
+      "required": true
+    },
+    "weightclass": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "clubEntryDate": {
+      "type": "date"
+    },
+    "slug": {
+      "type": "uid"
+    }
+  }
+}

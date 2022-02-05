@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_location_locations",
+  "info": {
+    "displayName": "Location",
+    "icon": "map-marked",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "longitude": {
+      "type": "float",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "countryShort": {
+      "type": "string"
+    }
+  }
+}

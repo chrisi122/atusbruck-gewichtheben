@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "officials",
+  "info": {
+    "singularName": "official",
+    "pluralName": "officials",
+    "displayName": "Official"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "position": {
+      "type": "enumeration",
+      "enum": [
+        "chairman",
+        "chairman_debuty",
+        "athletic_director",
+        "treasurer",
+        "treasurer_debuty",
+        "secretary",
+        "secretary_debuty"
+      ]
+    }
+  }
+}

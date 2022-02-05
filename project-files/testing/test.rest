@@ -1,0 +1,86 @@
+GET http://localhost:1337/api/competitions?populate=*
+
+###
+
+GET http://localhost:1337/api/results?populate[0]=score.disciplines.attempts&populate[1]=athlete
+
+###
+POST http://localhost:1337/api/athletes
+Content-Type: application/json
+
+{
+    "data": {
+        "personalInformation": {
+            "name": {
+                "firstname": "Christian",
+                "lastname": "Kathrein"
+            },
+            "dateOfBirth": "1992-09-01"
+        },
+        "isActive": true
+    }
+}
+
+###
+
+POST http://localhost:1337/api/test
+Content-Type: application/json
+
+{
+    "data": [
+        {"name": "Martin Koc"},
+        {"name": "Paul Tischler"}
+    ]
+}
+
+###
+
+POST http://localhost:1337/api/test
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "Moritz Weitbacher"
+    }
+}
+
+###
+
+POST http://localhost:1337/api/results
+Content-Type: application/json
+
+{
+    "data": {
+        "score": 
+        {"disciplines" : [
+            {
+                "type": "SNATCH",
+                "attempts": [
+                    {"weight": 120, "status": "GOOD_LIFT"},
+                    {"weight": 125, "status": "NO_LIFT"},
+                    {"weight": 125, "status": "GOOD_LIFT"}
+                ],
+                "weight": 125
+            }
+        ]}
+    }
+}
+
+###
+
+GET http://localhost:1337/api/people?populate[0]=name
+
+###
+
+PUT http://localhost:1337/api/athletes/586
+Content-Type: application/json
+
+{
+    "data": {
+       "fullName": "Test"
+    }
+}
+
+###
+
+GET http://localhost:1337/api/landing-page?populate[0]=trainingTime.time&populate[1]=contactInfos

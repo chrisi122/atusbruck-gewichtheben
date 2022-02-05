@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_landing_page_training_time_items",
+  "info": {
+    "displayName": "TrainingTimeItem",
+    "icon": "user-clock"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

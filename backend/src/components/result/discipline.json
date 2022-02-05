@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_result_disciplines",
+  "info": {
+    "displayName": "Discipline",
+    "icon": "arrow-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "attempts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "result.attempt"
+    },
+    "weight": {
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "SNATCH",
+        "CLEAN_AND_JERK",
+        "TOTAL"
+      ],
+      "required": true
+    }
+  }
+}

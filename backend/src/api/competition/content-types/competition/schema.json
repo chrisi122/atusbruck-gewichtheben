@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "competitions",
+  "info": {
+    "singularName": "competition",
+    "pluralName": "competitions",
+    "displayName": "Competition",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "component",
+      "repeatable": false,
+      "component": "date.date-range"
+    },
+    "location": {
+      "type": "component",
+      "repeatable": false,
+      "component": "location.location"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "INDIVIDUAL",
+        "TEAM",
+        "INTERNATIONAL"
+      ]
+    },
+    "title": {
+      "displayName": "Title",
+      "type": "component",
+      "repeatable": false,
+      "component": "competition.title"
+    },
+    "online": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "results": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::result.result",
+      "mappedBy": "competitions"
+    }
+  }
+}

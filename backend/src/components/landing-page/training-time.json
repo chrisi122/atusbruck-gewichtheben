@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_landing_page_training_times",
+  "info": {
+    "displayName": "TrainingTime",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "time": {
+      "displayName": "TrainingTimeItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "landing-page.training-time-item"
+    }
+  }
+}
