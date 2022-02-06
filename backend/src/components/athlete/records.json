@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_athlete_records",
+  "info": {
+    "displayName": "Records",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "entry": {
+      "type": "string"
+    }
+  }
+}

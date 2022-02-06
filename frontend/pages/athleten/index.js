@@ -8,13 +8,15 @@ const useStyles = makeStyles((theme) => ({
   container: {
     maxWidth: theme.breakpoints.values.maxWidth,
     margin: "auto",
+    width: "100%",
   },
-  outerContainer: {
-    padding: "2rem",
-  },
+  outerContainer: { padding: "2rem" },
   heading: {
     margin: "auto",
     marginBottom: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "1rem",
+    },
   },
 }));
 
@@ -23,8 +25,8 @@ const index = ({ athletes }) => {
   return (
     <div className={classes.outerContainer}>
       <Typography
-        variant="h1"
-        align="center"
+        variant='h1'
+        align='center'
         classes={{ root: classes.heading }}
       >
         Athleten
@@ -32,7 +34,7 @@ const index = ({ athletes }) => {
       <Grid
         container
         classes={{ root: classes.container }}
-        justifyContent="center"
+        justifyContent='center'
         spacing={3}
       >
         {athletes &&

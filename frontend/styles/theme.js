@@ -40,13 +40,13 @@ let theme = createTheme({
       letterSpacing: "0.125rem",
       textTransform: "uppercase",
       fontWeight: 600,
-      //   borderBottom: "5px solid #da251d",
       width: "fit-content",
       padding: 0,
       borderBottom: "0.25rem solid",
       borderImageSlice: "0 0 100% 0",
       borderImageSource: `radial-gradient(circle at center, ${primaryColor}, transparent)`,
-      marginBottom: "1rem",
+      margin: "2rem auto",
+      textAlign: "center",
     },
     h2: {
       fontSize: "2rem",
@@ -91,5 +91,32 @@ let theme = createTheme({
     },
   },
 });
+
+theme.overrides = {
+  MuiTypography: {
+    h1: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "2rem",
+      },
+    },
+    h2: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem",
+        letterSpacing: 0,
+      },
+    },
+    h3: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.25rem",
+        letterSpacing: 0,
+      },
+    },
+    body1: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "0.8rem",
+      },
+    },
+  },
+};
 
 export default theme;

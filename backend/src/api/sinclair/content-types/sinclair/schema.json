@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "sinclairs",
+  "info": {
+    "singularName": "sinclair",
+    "pluralName": "sinclairs",
+    "displayName": "Sinclair",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sinclair": {
+      "displayName": "constants",
+      "type": "component",
+      "repeatable": true,
+      "component": "sinclair.constants"
+    },
+    "melzer": {
+      "displayName": "Melzer",
+      "type": "component",
+      "repeatable": true,
+      "component": "sinclair.melzer"
+    }
+  }
+}

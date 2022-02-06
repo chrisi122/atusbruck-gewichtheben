@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sinclair_melzers",
+  "info": {
+    "displayName": "Melzer",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "from": {
+      "type": "date"
+    },
+    "to": {
+      "type": "date"
+    },
+    "male": {
+      "type": "json"
+    },
+    "female": {
+      "type": "json"
+    }
+  }
+}

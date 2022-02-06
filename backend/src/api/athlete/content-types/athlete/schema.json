@@ -37,6 +37,11 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "records": {
+      "type": "component",
+      "repeatable": true,
+      "component": "athlete.records"
     }
   }
 }

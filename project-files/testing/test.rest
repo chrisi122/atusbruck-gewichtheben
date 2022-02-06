@@ -84,3 +84,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:1337/api/landing-page?populate[0]=trainingTime.time&populate[1]=contactInfos
+
+###
+
+GET http://localhost:1337/api/sinclair?populate=*

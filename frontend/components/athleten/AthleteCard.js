@@ -16,11 +16,14 @@ import { BsCalendar2Check } from "react-icons/bs";
 import { IoScaleOutline, IoBarbellSharp } from "react-icons/io5";
 import { GoLocation } from "react-icons/go";
 
+import { getSinclairCoefficient } from "../../utils/sinclair";
+
 const AthleteCard = ({ athlete }) => {
   const personalBests = {
     snatch: 0,
     cleanAndJerk: 0,
     total: 0,
+    sinclair: 0,
   };
 
   athlete.attributes.results.data
@@ -36,66 +39,85 @@ const AthleteCard = ({ athlete }) => {
         (el) => el.type === "TOTAL"
       );
 
+      const sinclair = Number(
+        (
+          getSinclairCoefficient(result.attributes.bodyweight)[
+            athlete.attributes.personalInformation.gender == "M"
+              ? "male"
+              : "female"
+          ] * total.weight
+        ).toFixed(2)
+      );
+
       if (sn.weight > personalBests.snatch) personalBests.snatch = sn.weight;
       if (cj.weight > personalBests.cleanAndJerk)
         personalBests.cleanAndJerk = cj.weight;
       if (total.weight > personalBests.total)
         personalBests.total = total.weight;
+      if (sinclair > personalBests.sinclair) personalBests.sinclair = sinclair;
     });
   return (
     <Card>
       <CardMedia
-        component="img"
-        image="/images/athleten/kathrein-christian.jpg"
+        component='img'
+        image='/images/athleten/kathrein-christian.jpg'
         height={300}
       />
       <CardContent>
-        <Grid container direction="column" alignItems="flex-start" spacing={1}>
+        <Grid container direction='column' alignItems='flex-start' spacing={1}>
           <Grid item>
-            <Typography variant="h3">
+            <Typography variant='h3'>
               {athlete.attributes.personalInformation.name.lastname}{" "}
               {athlete.attributes.personalInformation.name.firstname}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">
+            <Typography variant='body1'>
               <FaBirthdayCake />{" "}
-              <Moment format="DD.MM.YYYY">
+              <Moment format='DD.MM.YYYY'>
                 {athlete.attributes.personalInformation.dateOfBirth}
               </Moment>
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">
+            <Typography variant='body1'>
               <BsCalendar2Check />{" "}
-              <Moment format="DD.MM.YYYY">
+              <Moment format='DD.MM.YYYY'>
                 {athlete.attributes.clubEntryDate}
               </Moment>
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">
+            <Typography variant='body1'>
               <IoScaleOutline /> {athlete.attributes.weightclass}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">
+            <Typography variant='body1'>
               <GoLocation />{" "}
               {athlete.attributes.personalInformation.placeOfBirth}
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">
+            <Typography variant='body1'>
               <IoBarbellSharp /> {personalBests.snatch} kg /{" "}
-              {personalBests.cleanAndJerk} kg / {personalBests.total} kg /
-              335.56 SP
+              {personalBests.cleanAndJerk} kg / {personalBests.total} kg /{" "}
+              {personalBests.sinclair} SP
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions>
-        <Button variant="contained" color="primary" fullWidth>
-          zum Athleten
+        <Button
+          variant='contained'
+          color='primary'
+          fullWidth
+          component='a'
+          href={`athleten/${athlete.attributes.slug}`}
+        >
+          {athlete.attributes.personalInformation.gender === "M"
+            ? "zum Athleten"
+            : "zur Athletin"}
         </Button>
       </CardActions>
     </Card>
