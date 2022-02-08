@@ -41,7 +41,8 @@ let theme = createTheme({
       textTransform: "uppercase",
       fontWeight: 600,
       width: "fit-content",
-      padding: 0,
+      padding: "0 3rem",
+      paddingBottom: "0.25rem",
       borderBottom: "0.25rem solid",
       borderImageSlice: "0 0 100% 0",
       borderImageSource: `radial-gradient(circle at center, ${primaryColor}, transparent)`,
@@ -97,6 +98,8 @@ theme.overrides = {
     h1: {
       [theme.breakpoints.down("xs")]: {
         fontSize: "2rem",
+        padding: 0,
+        paddingBottom: "0.25rem",
       },
     },
     h2: {

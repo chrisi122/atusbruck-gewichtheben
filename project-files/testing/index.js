@@ -92,14 +92,6 @@ const createResult = async (data, id) => {
 //   createResult(el, i);
 // });
 
-fetch(
-  "http://localhost:1337/api/athletes?populate[0]=personalInformation.name&populate[1]=results&filters[personalInformation][name][lastname]=Kathrein"
-).then(async (res) => {
-  const data = await res.json();
-
-  console.log(data);
-});
-
 // fetch(
 //   "http://localhost:1337/api/athletes?pagination[pageSize]=300&populate[0]=personalInformation.name&populate[1]=results"
 // ).then(async (res) => {
@@ -131,32 +123,32 @@ fetch(
 //   console.log(data);
 // });
 
-axios
-  .get(
-    "http://localhost:1337/api/athletes?pagination[pageSize]=300&populate=personalInformation.name"
-  )
-  .then((res) => {
-    // console.log(res.data.data);
-    res.data.data.forEach((el) => {
-      const fullName = `${el.attributes.personalInformation.name.lastname}${
-        el.attributes.personalInformation.name.firstname
-          ? " " + el.attributes.personalInformation.name.firstname
-          : ""
-      }`;
-      const slug = fullName
-        .toLowerCase()
-        .replaceAll(" ", "-")
-        .replaceAll("ö", "oe")
-        .replaceAll("ä", "ae")
-        .replaceAll("ü", "ue")
-        .replaceAll("ß", "ss");
-      // console.log(slug, el.attributes.slug);
+// axios
+//   .get(
+//     "http://localhost:1337/api/athletes?pagination[pageSize]=300&populate=personalInformation.name"
+//   )
+//   .then((res) => {
+//     // console.log(res.data.data);
+//     res.data.data.forEach((el) => {
+//       const fullName = `${el.attributes.personalInformation.name.lastname}${
+//         el.attributes.personalInformation.name.firstname
+//           ? " " + el.attributes.personalInformation.name.firstname
+//           : ""
+//       }`;
+//       const slug = fullName
+//         .toLowerCase()
+//         .replaceAll(" ", "-")
+//         .replaceAll("ö", "oe")
+//         .replaceAll("ä", "ae")
+//         .replaceAll("ü", "ue")
+//         .replaceAll("ß", "ss");
+//       // console.log(slug, el.attributes.slug);
 
-      // axios.put("http://localhost:1337/api/athletes/" + el.id, {
-      //   data: { slug },
-      // });
-    });
-  });
+//       // axios.put("http://localhost:1337/api/athletes/" + el.id, {
+//       //   data: { slug },
+//       // });
+//     });
+//   });
 
 const updateResults = (page, pageSize = 25) => {
   axios
@@ -199,3 +191,55 @@ const getResults = (page = 1) => {
       res.data.data.forEach((el) => console.log(el.attributes.result));
     });
 };
+
+const changeAthleteModel = () => {
+  axios
+    .get(
+      "http://localhost:1337/api/athletes?pagination[pageSize]=500&populate[0]=personalInformation.name"
+    )
+    .then((res) => {
+      res.data.data.forEach((el) => {
+        const newData = {
+          fullName:
+            el.attributes.personalInformation.name.lastname +
+            (el.attributes.personalInformation.name.firstname
+              ? " " + el.attributes.personalInformation.name.firstname
+              : ""),
+          firstName:
+            el.attributes.personalInformation.name.firstname || undefined,
+          lastName: el.attributes.personalInformation.name.lastname,
+          dateOfBirth: el.attributes.personalInformation.dateOfBirth,
+          placeOfBirth: el.attributes.personalInformation.placeOfBirth,
+          gender:
+            el.attributes.personalInformation.gender === "M"
+              ? "MALE"
+              : "FEMALE",
+        };
+        !el.attributes.personalInformation.name.firstname &&
+          delete newData.firstName;
+        !newData.dateOfBirth && delete newData.dateOfBirth;
+        !newData.placeOfBirth && delete newData.placeOfBirth;
+
+        axios.put("http://localhost:1337/api/athletes/" + el.id, {
+          data: newData,
+        });
+      });
+    });
+};
+
+document.querySelector("#form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const file = document.querySelector("#file").files[0];
+  console.log(e.target.elements.image);
+
+  const data = new FormData();
+  data.append("files", file);
+  console.log(data);
+
+  axios
+    .post("http://localhost:1337/api/upload", {
+      data,
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+});

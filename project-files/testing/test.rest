@@ -87,4 +87,8 @@ GET http://localhost:1337/api/landing-page?populate[0]=trainingTime.time&populat
 
 ###
 
-GET http://localhost:1337/api/sinclair?populate=*
+GET http://localhost:1337/api/athletes?populate=*
+
+###
+
+GET http://localhost:1337/api/competitions/901?populate[0]=title&populate[1]=results.athlete.personalInformation.name

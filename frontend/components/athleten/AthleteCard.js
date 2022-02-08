@@ -42,9 +42,7 @@ const AthleteCard = ({ athlete }) => {
       const sinclair = Number(
         (
           getSinclairCoefficient(result.attributes.bodyweight)[
-            athlete.attributes.personalInformation.gender == "M"
-              ? "male"
-              : "female"
+            athlete.attributes.gender.toLowerCase()
           ] * total.weight
         ).toFixed(2)
       );
@@ -66,24 +64,13 @@ const AthleteCard = ({ athlete }) => {
       <CardContent>
         <Grid container direction='column' alignItems='flex-start' spacing={1}>
           <Grid item>
-            <Typography variant='h3'>
-              {athlete.attributes.personalInformation.name.lastname}{" "}
-              {athlete.attributes.personalInformation.name.firstname}
-            </Typography>
+            <Typography variant='h3'>{athlete.attributes.fullName}</Typography>
           </Grid>
           <Grid item>
             <Typography variant='body1'>
               <FaBirthdayCake />{" "}
               <Moment format='DD.MM.YYYY'>
-                {athlete.attributes.personalInformation.dateOfBirth}
-              </Moment>
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant='body1'>
-              <BsCalendar2Check />{" "}
-              <Moment format='DD.MM.YYYY'>
-                {athlete.attributes.clubEntryDate}
+                {athlete.attributes.dateOfBirth}
               </Moment>
             </Typography>
           </Grid>
@@ -94,8 +81,7 @@ const AthleteCard = ({ athlete }) => {
           </Grid>
           <Grid item>
             <Typography variant='body1'>
-              <GoLocation />{" "}
-              {athlete.attributes.personalInformation.placeOfBirth}
+              <GoLocation /> {athlete.attributes.placeOfBirth}
             </Typography>
           </Grid>
           <Grid item>
@@ -115,7 +101,7 @@ const AthleteCard = ({ athlete }) => {
           component='a'
           href={`athleten/${athlete.attributes.slug}`}
         >
-          {athlete.attributes.personalInformation.gender === "M"
+          {athlete.attributes.gender === "MALE"
             ? "zum Athleten"
             : "zur Athletin"}
         </Button>

@@ -19,21 +19,20 @@ const athlete = ({ athlete }) => {
   const matchesMD = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const matchesSM = useMediaQuery((theme) => theme.breakpoints.up("sm"));
 
+  console.log(athlete);
+
   console.log(matchesLG, matchesMD, matchesSM);
 
   return (
     <div className={classes.outerContainer}>
-      <Typography variant='h1'>
-        {athlete.attributes.personalInformation.name.lastname}{" "}
-        {athlete.attributes.personalInformation.name.firstname}
-      </Typography>
+      <Typography variant='h1'>{athlete.attributes.fullName}</Typography>
       <GeneralInfo athlete={athlete} />
       <Typography variant='h2' style={{ margin: "2rem auto" }}>
         Wettkämpfe
       </Typography>
       <ResultsTable
         results={athlete.attributes.results.data}
-        gender={athlete.attributes.personalInformation.gender}
+        gender={athlete.attributes.gender.toLowerCase()}
       />
     </div>
   );
@@ -48,7 +47,7 @@ export const getServerSideProps = async (context) => {
   try {
     const res = await axios.get(
       process.env.NEXT_PUBLIC_STRAPI_URL +
-        `/api/athletes?filters[slug]=${slug}&populate[0]=personalInformation.name&populate[1]=results.competitions.title&populate[2]=records&populate[3]=results.competitions.location`
+        `/api/athletes?filters[slug]=${slug}&populate[0]=results.competitions.title&populate[1]=records&populate[2]=results.competitions.location&populate[3]=image`
     );
 
     data = res.data;

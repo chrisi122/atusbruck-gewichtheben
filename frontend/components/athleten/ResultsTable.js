@@ -47,8 +47,6 @@ import { getSinclairCoefficient } from "../../utils/sinclair";
 // ];
 
 const ResultsTable = ({ results, gender }) => {
-  const genderKey = gender === "M" ? "male" : "female";
-
   const columns = [
     {
       field: "date",
@@ -75,10 +73,22 @@ const ResultsTable = ({ results, gender }) => {
       editable: true,
     },
     {
+      field: "snatchAttempts",
+      headerName: "Reißen Versuche",
+      hide: true,
+      minWidth: 150,
+    },
+    {
       field: "snatch",
       headerName: "Reißen",
       type: "number",
       editable: true,
+    },
+    {
+      field: "cjAttempts",
+      headerName: "Stoßen Versuche",
+      hide: true,
+      minWidth: 150,
     },
     {
       field: "cj",
@@ -99,7 +109,7 @@ const ResultsTable = ({ results, gender }) => {
       editable: true,
       valueGetter: (params) =>
         (
-          getSinclairCoefficient(params.row.bw)[genderKey] * params.row.total
+          getSinclairCoefficient(params.row.bw)[gender] * params.row.total
         ).toFixed(2),
     },
   ];
@@ -133,10 +143,29 @@ const ResultsTable = ({ results, gender }) => {
         (el) => el.type === "TOTAL"
       ).weight,
       sinclair: (
-        getSinclairCoefficient(result.attributes.bodyweight)[genderKey] *
+        getSinclairCoefficient(result.attributes.bodyweight)[gender] *
         result.attributes.result.disciplines.find((el) => el.type === "TOTAL")
           .weight
       ).toFixed(2),
+      snatchAttempts:
+        result.attributes.result.disciplines.find((el) => el.type === "SNATCH")
+          .attempts &&
+        result.attributes.result.disciplines
+          .find((el) => el.type === "SNATCH")
+          .attempts.map(
+            (el) => el.weight + (el.status === "NO_LIFT" ? "x" : "")
+          )
+          .join(" / "),
+      cjAttempts:
+        result.attributes.result.disciplines.find(
+          (el) => el.type === "CLEAN_AND_JERK"
+        ).attempts &&
+        result.attributes.result.disciplines
+          .find((el) => el.type === "CLEAN_AND_JERK")
+          .attempts.map(
+            (el) => el.weight + (el.status === "NO_LIFT" ? "x" : "")
+          )
+          .join(" / "),
     }))
     .sort((a, b) => b.sinclair - a.sinclair);
 

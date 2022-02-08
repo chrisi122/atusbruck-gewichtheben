@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import {
   Grid,
@@ -12,6 +13,8 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
@@ -88,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ trainingTime }) => {
   const classes = useStyles();
+  const route = useRouter();
   const [activeTab, setActiveTab] = useState(1);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [headerItems, setHeaderItems] = useState({
@@ -132,6 +136,16 @@ const Header = ({ trainingTime }) => {
   }, []);
 
   useEffect(() => {
+    setActiveTab(
+      headerItems.menu.indexOf(
+        headerItems.menu.find(
+          (el) => el.route === `/${route.asPath.split("/")[1]}`
+        )
+      )
+    );
+  }, [headerItems]);
+
+  useEffect(() => {
     matchesResponsiveMenu && setDrawerOpen(false);
   }, [matchesResponsiveMenu]);
 
@@ -147,7 +161,11 @@ const Header = ({ trainingTime }) => {
         alignItems='center'
       >
         <Grid item xs={2}>
-          <IconButton classes={{ root: classes.logoContainer }}>
+          <IconButton
+            classes={{ root: classes.logoContainer }}
+            component='a'
+            href='/'
+          >
             <img
               src='/images/logo/ATUS_ok_rot_schwarz_small.png'
               className={classes.logo}
@@ -163,7 +181,7 @@ const Header = ({ trainingTime }) => {
               justifyContent='center'
               alignItems='center'
             >
-              <Menu
+              <DesktopMenu
                 menu={headerItems && headerItems.menu}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
@@ -232,10 +250,11 @@ const MobileMenu = ({ menu, activeTab, setActiveTab }) => {
       {menu &&
         menu.map((el, i) => (
           <ListItem
-            button
             key={`MobileMenu-${el.label}`}
             selected={activeTab === i}
-            onClick={() => setActiveTab(i)}
+            component='a'
+            href={el.route}
+            style={{ color: "#000" }}
           >
             <ListItemText primary={el.label} />
           </ListItem>
@@ -244,24 +263,81 @@ const MobileMenu = ({ menu, activeTab, setActiveTab }) => {
   );
 };
 
-const Menu = ({ menu, activeTab, setActiveTab }) => {
+const DesktopMenu = ({ menu, activeTab, setActiveTab }) => {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openID, setOpenID] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event, i) => {
+    setAnchorEl(event.currentTarget);
+    setOpenID(i);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpenID(null);
+  };
   return (
-    <Tabs
-      value={activeTab}
-      classes={{ root: classes.tabs, indicator: classes.indicator }}
-    >
+    <>
+      <Tabs
+        value={activeTab !== -1 ? activeTab : false}
+        classes={{ root: classes.tabs, indicator: classes.indicator }}
+      >
+        {menu &&
+          menu.map((el, i) => (
+            <Tab
+              component={!el.submenu ? "a" : "button"}
+              key={el.label}
+              classes={{
+                root: classes.menuLink,
+              }}
+              label={el.label}
+              onClick={(event) => {
+                el.submenu && handleClick(event, i);
+              }}
+              href={!el.submenu ? el.route : undefined}
+              aria-controls={open ? `submenu_${i}` : undefined}
+              aria-haspopup='true'
+              aria-expanded={open ? "true" : undefined}
+              id={`anchor_menu_${i}`}
+            />
+          ))}
+      </Tabs>
       {menu &&
-        menu.map((el, i) => (
-          <Tab
-            key={el.label}
-            classes={{
-              root: classes.menuLink,
-            }}
-            label={el.label}
-            onClick={() => setActiveTab(i)}
-          />
-        ))}
-    </Tabs>
+        menu.map(
+          (el, i) =>
+            el.submenu && (
+              <Menu
+                key={`submenu_${el.label}`}
+                id={`submenu_${i}`}
+                anchorEl={anchorEl}
+                open={open && openID === i}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": `anchor_menu_${i}`,
+                }}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                getContentAnchorEl={undefined}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+              >
+                {el.submenu.map((sub, i) => (
+                  <MenuItem
+                    key={`submenu_item_${sub.label}`}
+                    onClick={handleClose}
+                    component='a'
+                    href={sub.route}
+                  >
+                    {sub.label}
+                  </MenuItem>
+                ))}
+              </Menu>
+            )
+        )}
+    </>
   );
 };
