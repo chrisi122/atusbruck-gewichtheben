@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const athlete = ({ athlete }) => {
+const Athlete = ({ athlete }) => {
   const classes = useStyles();
   const matchesLG = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const matchesMD = useMediaQuery((theme) => theme.breakpoints.up("md"));
@@ -38,7 +38,7 @@ const athlete = ({ athlete }) => {
   );
 };
 
-export default athlete;
+export default Athlete;
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.query;

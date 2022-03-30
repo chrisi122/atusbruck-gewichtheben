@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const fileUpload = () => {
+const FileUpload = () => {
   const [file, setFile] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -36,4 +36,4 @@ const fileUpload = () => {
   );
 };
 
-export default fileUpload;
+export default FileUpload;

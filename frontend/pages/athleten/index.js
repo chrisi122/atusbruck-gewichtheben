@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const index = ({ athletes }) => {
+const Athletes = ({ athletes }) => {
   const classes = useStyles();
   return (
     <div className={classes.outerContainer}>
@@ -48,7 +48,7 @@ const index = ({ athletes }) => {
   );
 };
 
-export default index;
+export default Athletes;
 
 export const getServerSideProps = async (context) => {
   let data = null;
