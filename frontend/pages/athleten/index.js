@@ -31,12 +31,7 @@ const Athletes = ({ athletes }) => {
       >
         Athleten
       </Typography>
-      <Grid
-        container
-        classes={{ root: classes.container }}
-        justifyContent='center'
-        spacing={3}
-      >
+      <Grid container classes={{ root: classes.container }} spacing={3}>
         {athletes &&
           athletes.map((athlete, id) => (
             <Grid key={athlete.attributes.slug} item xs={12} sm={6} xl={4}>
