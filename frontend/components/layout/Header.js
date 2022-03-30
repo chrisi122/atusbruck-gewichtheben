@@ -167,7 +167,7 @@ const Header = ({ trainingTime }) => {
             href='/'
           >
             <img
-              src='/images/logo/ATUS_ok_rot_schwarz_small.png'
+              src='/images/logo/ATUS_oK_rot_schwarz_small.png'
               className={classes.logo}
             ></img>
           </IconButton>
